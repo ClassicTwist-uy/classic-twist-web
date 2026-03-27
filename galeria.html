@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería — Classic Twist</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400&family=Fraunces:ital,opsz,wght@1,9..144,200;1,9..144,300;1,9..144,400;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --rojo:    #D4232A;
+  --negro:   #111010;
+  --blanco:  #FFFFFF;
+  --amarillo:#FFD600;
+  --gris:    #F5F3F0;
+  --gris-txt:#7A7370;
+  --linea:   #E8E4E0;
+}
+
+body {
+  background: var(--blanco);
+  color: var(--negro);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════
+   NAVBAR
+══════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 48px;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 0 var(--linea);
+}
+
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 2px;
+  align-items: flex-start;
+}
+.nav-logo .l-c {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 200;
+  font-size: 9.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(17,16,16,0.45);
+  padding-left: 8px;
+}
+.l-twist-row { display: flex; align-items: center; gap: 4px; }
+.l-dots-v { display: flex; flex-direction: column; gap: 3px; flex-shrink: 0; }
+.l-dots-v span { width: 4px; height: 4px; border-radius: 50%; display: block; }
+.l-dot-y { background: var(--amarillo); }
+.l-dot-r { background: var(--rojo); }
+.nav-logo .l-t {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 26px;
+  color: var(--negro);
+  line-height: 0.9;
+}
+
+.nav-links { display: flex; align-items: center; list-style: none; gap: 4px; }
+.nav-links li { position: relative; }
+.nav-links li a {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--negro);
+  text-decoration: none;
+  padding: 8px 16px;
+  position: relative;
+  transition: color 0.25s;
+  display: block;
+}
+.nav-links li a:hover { color: var(--rojo); }
+.nav-links li a.nav-cta { font-weight: 400; padding: 9px 20px; }
+.nav-links li a.active { color: var(--rojo); }
+
+.nav-oval {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* ══════════════════════════════
+   GALERÍA
+══════════════════════════════ */
+#galeria {
+  padding: 120px 64px 96px;
+  background: var(--blanco);
+}
+
+.gl-page-header {
+  margin-bottom: 64px;
+}
+.gl-page-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gris-txt);
+  margin-bottom: 16px;
+}
+.gl-page-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(40px, 5vw, 72px);
+  color: var(--negro);
+  line-height: 1.0;
+}
+
+.gl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.gl-item {
+  overflow: hidden;
+  background: var(--linea);
+}
+.gl-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+  aspect-ratio: 4/5;
+}
+.gl-item:hover img { transform: scale(1.04); }
+.gl-item.landscape img { aspect-ratio: 16/10; }
+.gl-item.large {
+  grid-column: span 2;
+}
+.gl-item.large img { aspect-ratio: auto; height: 560px; }
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  background: var(--blanco);
+  border-top: 1px solid var(--linea);
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-logo .l-c { color: rgba(17,16,16,0.35); }
+.footer-logo .l-t { color: var(--negro); }
+.footer-copy {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(17,16,16,0.35);
+}
+.footer-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  color: rgba(17,16,16,0.45);
+}
+.footer-tagline em { color: var(--rojo); font-style: normal; }
+
+@media (max-width: 900px) {
+  nav { padding: 14px 24px; }
+  #galeria { padding: 100px 24px 64px; }
+  .gl-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .gl-item.large { grid-column: span 2; }
+  .gl-item.large img { height: 300px; }
+  footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="l-c">Classic</span>
+    <span class="l-twist-row">
+      <span class="l-dots-v">
+        <span class="l-dot-y"></span>
+        <span class="l-dot-r"></span>
+      </span>
+      <span class="l-t">Twist</span>
+    </span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="Web_Home_V3.html#sobre">Sobre Classic</a></li>
+    <li><a href="Web_Home_V3.html#servicios">Servicios</a></li>
+    <li><a href="galeria.html" class="active">Galería</a></li>
+    <li><a href="https://u5kjy.share.hsforms.com/244sGq6KZTMa5v41N2JdcyQ" target="_blank" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- GALERÍA -->
+<section id="galeria">
+
+  <div class="gl-page-header">
+    <div class="gl-page-label">Galería</div>
+    <h1 class="gl-page-title">Nuestro trabajo.</h1>
+  </div>
+
+  <div class="gl-grid">
+    <div class="gl-item large">
+      <img src="assets/img/general/_AG36874.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/general/069CucharaFixed.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/general/168CucharaFixed.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/general/DSC09225.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/general/DSC_7646.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/eventos-corporativos/_DSC7744.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/lanzamiento/DSC_0591.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/lanzamiento/_YM_7427.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/celebraciones/DSC00837.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/celebraciones/DSC00948.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/celebraciones/DSC00960.jpg" alt="Classic Twist">
+    </div>
+    <div class="gl-item">
+      <img src="assets/img/celebraciones/DSC00991.jpg" alt="Classic Twist">
+    </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="nav-logo footer-logo">
+    <span class="l-c">Classic</span>
+    <span class="l-twist-row">
+      <span class="l-dots-v">
+        <span class="l-dot-y"></span>
+        <span class="l-dot-r"></span>
+      </span>
+      <span class="l-t">Twist</span>
+    </span>
+  </a>
+  <span class="footer-tagline">Dirección creativa aplicada al <em>líquido.</em></span>
+  <span class="footer-copy">© 2026 Classic Twist · Uruguay</span>
+</footer>
+
+<script>
+// Óvalo nav — Contacto siempre visible
+document.fonts.ready.then(() => {
+  const ns = 'http://www.w3.org/2000/svg';
+  const allLis = Array.from(document.querySelectorAll('.nav-links li'));
+  let ctaEl = null, ctaLen = 0;
+
+  allLis.forEach(li => {
+    const link = li.querySelector('a');
+    const isCta = link.classList.contains('nav-cta');
+    const px = isCta ? 18 : 16, py = isCta ? 10 : 9;
+    const W = link.offsetWidth + px*2, H = link.offsetHeight + py*2;
+    const rx = W/2-2, ry = H/2-1;
+
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('width', W); svg.setAttribute('height', H);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.classList.add('nav-oval');
+
+    const ell = document.createElementNS(ns, 'ellipse');
+    ell.setAttribute('cx', W/2); ell.setAttribute('cy', H/2);
+    ell.setAttribute('rx', rx); ell.setAttribute('ry', ry);
+    ell.setAttribute('fill', 'none'); ell.setAttribute('stroke', '#D4232A');
+    ell.setAttribute('stroke-width', '1.5'); ell.setAttribute('stroke-linecap', 'round');
+
+    const len = Math.PI * (3*(rx+ry) - Math.sqrt((3*rx+ry)*(rx+3*ry)));
+    ell.style.strokeDasharray = len;
+    svg.appendChild(ell); li.appendChild(svg);
+
+    if (isCta) {
+      ell.style.strokeDashoffset = 0;
+      ell.style.transition = 'stroke-dashoffset 0.35s ease, opacity 0.3s ease';
+      ctaEl = ell; ctaLen = len;
+    } else {
+      ell.style.strokeDashoffset = len;
+      ell.style.transition = 'stroke-dashoffset 0.45s cubic-bezier(0.4,0,0.2,1)';
+      li.addEventListener('mouseenter', () => { ell.style.strokeDashoffset = 0; if(ctaEl) ctaEl.style.strokeDashoffset = ctaLen; });
+      li.addEventListener('mouseleave', () => { ell.style.strokeDashoffset = len; if(ctaEl) ctaEl.style.strokeDashoffset = 0; });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

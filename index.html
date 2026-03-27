@@ -1,0 +1,1930 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classic Twist</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300;400&family=Fraunces:ital,opsz,wght@1,9..144,200;1,9..144,300;1,9..144,400;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --rojo:    #D4232A;
+  --negro:   #111010;
+  --blanco:  #FFFFFF;
+  --amarillo:#FFD600;
+  --gris:    #F5F3F0;
+  --gris-txt:#7A7370;
+  --linea:   #E8E4E0;
+}
+
+body {
+  background: var(--blanco);
+  color: var(--negro);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════
+   NAVBAR
+══════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  transition: background 0.35s, padding 0.35s, box-shadow 0.35s;
+}
+
+/* Al hacer scroll el nav se vuelve blanco con sombra suave */
+nav.solid {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(12px);
+  padding: 16px 48px;
+  box-shadow: 0 1px 0 var(--linea);
+}
+
+/* ── Logo ── */
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 2px;
+  align-items: flex-start;
+}
+.nav-logo .l-c {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 200;
+  font-size: 9.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  transition: color 0.35s;
+  padding-left: 8px; /* alínea con el "T" (esquiva los dos puntitos) */
+}
+/* Fila Twist: puntos verticales + texto */
+.l-twist-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.l-dots-v {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.l-dots-v span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  display: block;
+}
+.l-dot-y { background: var(--amarillo); }
+.l-dot-r { background: var(--rojo); }
+.nav-logo .l-t {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 26px;
+  color: var(--blanco);
+  line-height: 0.9;
+  transition: color 0.35s;
+}
+/* Logo oscuro al hacer scroll */
+nav.solid .nav-logo .l-c { color: rgba(17,16,16,0.45); }
+nav.solid .nav-logo .l-t { color: var(--negro); }
+
+/* ── Nav links ── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li a {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  text-decoration: none;
+  padding: 8px 16px;
+  position: relative;
+  transition: color 0.25s;
+  display: block;
+}
+.nav-links li a:hover { color: var(--blanco); }
+
+/* Links oscuros al hacer scroll */
+nav.solid .nav-links li a { color: var(--negro); }
+nav.solid .nav-links li a:hover { color: var(--rojo); }
+
+/* Servicios: un poco más grueso */
+.nav-links li a[href="#servicios"] { font-weight: 400; }
+
+/* SVG óvalo — inyectado por JS, perfectamente centrado */
+.nav-links li .nav-oval {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* CTA "Contacto" — óvalo estático, sin background */
+.nav-links li a.nav-cta {
+  background: none;
+  color: rgba(255,255,255,0.88);
+  font-weight: 400;
+  padding: 9px 20px;
+}
+.nav-links li a.nav-cta:hover { color: var(--blanco); }
+nav.solid .nav-links li a.nav-cta { color: var(--negro); }
+nav.solid .nav-links li a.nav-cta:hover { color: var(--rojo); }
+
+/* ── Hamburger (mobile) ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--blanco);
+  transition: transform 0.3s, opacity 0.3s, background 0.35s;
+}
+nav.solid .hamburger span { background: var(--negro); }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── Mobile menu ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--blanco);
+  z-index: 190;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  padding: 80px 48px 48px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(36px, 8vw, 56px);
+  color: var(--negro);
+  text-decoration: none;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--linea);
+  width: 100%;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--rojo); }
+.mobile-menu .mm-cta {
+  margin-top: 24px;
+  background: var(--rojo);
+  color: var(--blanco) !important;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 14px 32px !important;
+  width: auto;
+  border: none;
+}
+
+
+/* ══════════════════════════════
+   HERO — 2 VIDEOS
+══════════════════════════════ */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+}
+
+.hero-videos {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.hv-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.hv-item video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay degradado — más suave, deja ver los videos */
+.hv-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.18) 0%,
+    rgba(0,0,0,0.05) 45%,
+    rgba(0,0,0,0.52) 100%
+  );
+  z-index: 1;
+}
+
+/* Línea blanca central — eliminada */
+.hero-divider { display: none; }
+
+/* Contenido sobre videos */
+.hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 52px;
+}
+
+.hero-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 14px;
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.hs-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  writing-mode: vertical-rl;
+}
+.hs-line {
+  width: 1px;
+  height: 56px;
+  background: rgba(255,255,255,0.15);
+  position: relative;
+  overflow: hidden;
+}
+.hs-line::after {
+  content: '';
+  position: absolute;
+  top: -100%; left: 0;
+  width: 1px; height: 100%;
+  background: var(--rojo);
+  animation: scrollDown 2s ease-in-out infinite;
+}
+@keyframes scrollDown {
+  0%   { top: -100%; }
+  100% { top: 100%; }
+}
+
+
+/* ══════════════════════════════
+   TICKER — sin fondo, texto alterno rojo/amarillo
+══════════════════════════════ */
+.ticker {
+  background: transparent;
+  overflow: hidden;
+  padding: 16px 0;
+  white-space: nowrap;
+  border-top: 1px solid var(--linea);
+  border-bottom: 1px solid var(--linea);
+}
+.ticker-inner {
+  display: inline-flex;
+  align-items: center;
+  animation: ticker 22s linear infinite;
+}
+.ticker-inner:hover { animation-play-state: paused; }
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0 22px;
+}
+/* Alternancia rojo / amarillo */
+.ticker-item:nth-child(odd)  { color: var(--rojo); }
+.ticker-item:nth-child(even) { color: var(--amarillo); }
+
+/* Separador: dos puntos verticales como el logo (rojo arriba, amarillo abajo) */
+.ticker-sep {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.ticker-sep span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+.ticker-sep span:first-child { background: var(--rojo); }
+.ticker-sep span:last-child  { background: var(--amarillo); }
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+/* ══════════════════════════════
+   LOGO REVEAL SECTION
+══════════════════════════════ */
+#logo-reveal {
+  background: var(--blanco);
+  position: relative;
+  overflow: hidden;
+  padding: 88px 64px 88px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  border-bottom: 1px solid var(--linea);
+}
+
+.lr-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.lr-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;   /* el boceto puede agrandarse sin expandir el área */
+}
+
+.lr-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gris-txt);
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.lr-logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 36px;
+}
+.lr-classic {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 200;
+  font-size: clamp(14px, 2.2vw, 28px);
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--negro);
+  opacity: 0.5;
+  padding-left: 20px; /* alínea con el Twist (esquiva los puntitos + gap) */
+}
+.lr-twist {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(72px, 11vw, 160px);
+  color: var(--negro);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+}
+
+/* Logo reveal — fila Twist con puntos a la izquierda */
+.lr-logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 0;
+}
+.lr-twist-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lr-dots-v {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  align-self: center;
+}
+.lr-dots-v span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+.lr-dot-y { background: var(--amarillo); }
+.lr-dot-r { background: var(--rojo); }
+
+/* Boceto cóctel — imagen acuarela espejada */
+.lr-cocktail {
+  width: 90%;
+  max-width: 480px;
+  height: auto;
+  transform: scaleX(-1); /* espejo → trago hacia la derecha */
+}
+
+@media (max-width: 900px) {
+  #logo-reveal {
+    grid-template-columns: 1fr;
+    padding: 64px 24px;
+  }
+  .lr-right { justify-content: flex-start; }
+  .lr-cocktail { max-width: 220px; }
+}
+
+
+/* ══════════════════════════════
+   SOBRE CLASSIC  (#sobre)
+══════════════════════════════ */
+#sobre {
+  background: var(--blanco);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  align-items: stretch;
+}
+
+.sc-left {
+  padding: clamp(72px, 8vw, 120px) clamp(36px, 5vw, 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--linea);
+}
+
+.sc-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris-txt);
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sc-label::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--amarillo);
+  flex-shrink: 0;
+}
+
+.sc-big {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200;
+  font-size: clamp(40px, 4.2vw, 68px);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--negro);
+  margin-bottom: 4px;
+}
+.sc-big-red {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(40px, 4.2vw, 68px);
+  line-height: 1.0;
+  color: var(--rojo);
+  display: block;
+  margin-bottom: 36px;
+}
+
+.sc-body {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--gris-txt);
+  margin-bottom: 12px;
+  max-width: 440px;
+}
+
+/* Pilares */
+.sc-pillars {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--linea);
+}
+.sc-pillar {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  column-gap: 18px;
+  row-gap: 5px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--linea);
+}
+.sp-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(17,16,16,0.25);
+  padding-top: 3px;
+}
+.sp-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--negro);
+}
+.sp-body {
+  grid-column: 2;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--gris-txt);
+}
+
+/* ── Lado derecho — flipbook ── */
+.sc-right {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+}
+
+.sc-flipbook {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--gris);
+  user-select: none;
+  box-shadow: -12px 0 30px rgba(0,0,0,0.06);
+}
+
+.qf-page {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.qf-page.active { opacity: 1; }
+.qf-page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+/* Contador */
+.qf-counter {
+  position: absolute;
+  top: 18px; left: 18px;
+  z-index: 15;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  pointer-events: none;
+}
+.qf-cur { color: rgba(255,255,255,0.95); }
+
+/* Dots */
+.qf-dots {
+  position: absolute;
+  bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  gap: 6px;
+  pointer-events: none;
+}
+.qf-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.28);
+  transition: background 0.2s, transform 0.2s;
+}
+.qf-dot.active {
+  background: var(--blanco);
+  transform: scale(1.3);
+}
+
+
+/* ══════════════════════════════
+   SERVICIOS  (#servicios)
+══════════════════════════════ */
+#servicios {
+  background: var(--blanco);
+  padding: 100px 0;
+  border-top: 1px solid var(--linea);
+}
+
+.sv-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.sv-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.sv-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gris-txt);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sv-label::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--amarillo);
+  flex-shrink: 0;
+}
+
+.sv-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(40px, 4.5vw, 64px);
+  line-height: 1.0;
+  color: var(--negro);
+  letter-spacing: -0.02em;
+}
+
+.sv-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--gris-txt);
+  align-self: end;
+}
+
+/* Lista de servicios */
+.sv-list { display: flex; flex-direction: column; }
+
+.sv-item {
+  border-top: 1px solid var(--linea);
+  padding: 26px 0;
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 32px;
+  align-items: center;
+  transition: padding-left 0.25s;
+  cursor: pointer;
+}
+.sv-item:last-child { border-bottom: 1px solid var(--linea); }
+.sv-item:hover { padding-left: 12px; }
+.sv-item.open { padding-left: 12px; border-bottom: none; }
+
+/* Panel expandible debajo de cada item */
+.sv-expand {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease;
+  opacity: 0;
+  border-bottom: 1px solid var(--linea);
+}
+.sv-expand.open {
+  max-height: 900px;
+  opacity: 1;
+}
+.sv-expand-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding: 32px 0 48px 88px; /* alineado con el texto del título */
+  align-items: start;
+}
+.sv-expand-text {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba(17,16,16,0.7);
+  max-width: 420px;
+}
+.sv-expand-photos {
+  position: relative;
+  overflow: hidden;
+}
+.sv-expand-photos img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.sv-expand-photos img:first-child { position: relative; opacity: 1; }
+.sv-expand-photos img.active { opacity: 1; }
+.sv-expand-photos img.inactive { opacity: 0; }
+
+/* Controles del slider */
+.sv-slider-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.sv-slider-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  color: var(--negro);
+  opacity: 0.4;
+  font-size: 16px;
+  transition: opacity 0.2s;
+  font-family: sans-serif;
+}
+.sv-slider-btn:hover { opacity: 1; }
+.sv-slider-dots { display: flex; gap: 6px; }
+.sv-slider-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--linea);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sv-slider-dot.active { background: var(--rojo); }
+
+/* Flecha rotatoria en "Ver más" cuando está abierto */
+.sv-item.open .sv-ver-mas { opacity: 1; color: var(--rojo); }
+.sv-ver-mas-label { display: inline; }
+.sv-item.open .sv-ver-mas-label::before { content: 'Ver menos'; }
+.sv-item:not(.open) .sv-ver-mas-label::before { content: 'Ver más'; }
+
+@media (max-width: 900px) {
+  .sv-expand-inner { grid-template-columns: 1fr; padding-left: 0; gap: 24px; }
+}
+
+.sv-num {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 200;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(17,16,16,0.25);
+}
+
+.sv-name {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  font-size: clamp(22px, 2.8vw, 38px);
+  letter-spacing: -0.02em;
+  color: var(--negro);
+}
+
+.sv-item-arrow {
+  font-size: 20px;
+  color: var(--linea);
+  opacity: 0.4;
+  transition: opacity 0.2s, color 0.2s;
+  font-family: sans-serif;
+}
+
+/* "Ver más" en cada servicio */
+.sv-ver-mas {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amarillo);
+  text-decoration: none;
+  position: relative;
+  padding: 8px 14px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.sv-item:hover .sv-ver-mas { opacity: 1; }
+
+/* SVG óvalo del "Ver más" — inyectado por JS */
+.sv-ver-mas .sv-oval {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  overflow: visible;
+}
+
+
+/* ══════════════════════════════
+   GALERÍA  (#galeria)
+══════════════════════════════ */
+#galeria {
+  background: var(--gris);
+  padding: 100px 0;
+  border-top: 1px solid var(--linea);
+}
+
+.gl-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.gl-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.gl-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 56px);
+  color: var(--negro);
+  letter-spacing: -0.02em;
+}
+
+.gl-link {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--rojo);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.2s;
+}
+.gl-link:hover { gap: 12px; }
+
+/* Grid de fotos */
+.gl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.gl-item {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--linea);
+  position: relative;
+}
+.gl-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+.gl-item:hover img { transform: scale(1.04); }
+
+/* Item grande */
+.gl-item.large {
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+
+/* ══════════════════════════════
+   CONFÍAN EN NOSOTROS (#clientes)
+══════════════════════════════ */
+#clientes {
+  background: var(--blanco);
+  padding: 72px 64px;
+  border-top: 1px solid var(--linea);
+  border-bottom: 1px solid var(--linea);
+}
+.cl-container { max-width: 1200px; margin: 0 auto; }
+.cl-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gris-txt);
+  margin-bottom: 48px;
+}
+.cl-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px 48px;
+}
+.cl-logos img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: opacity 0.2s, filter 0.2s;
+}
+.cl-logos img:hover { opacity: 1; filter: grayscale(0); }
+/* Placeholder temporal hasta tener los logos reales */
+.cl-logo-placeholder {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--linea);
+  border: 1px dashed var(--linea);
+  padding: 10px 24px;
+  border-radius: 2px;
+}
+
+@media (max-width: 900px) {
+  #clientes { padding: 48px 24px; }
+  .cl-logos { justify-content: center; gap: 28px 32px; }
+}
+
+/* ══════════════════════════════
+   CONTACTO  (#contacto)
+══════════════════════════════ */
+#contacto {
+  background: var(--blanco);
+  padding: 0;
+  border-top: 1px solid var(--linea);
+}
+
+.ct-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Bloque izquierdo — rojo */
+.ct-left {
+  background: var(--rojo);
+  padding: clamp(64px, 8vw, 112px) clamp(40px, 5vw, 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ct-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ct-label::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--blanco);
+  flex-shrink: 0;
+}
+
+.ct-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 58px);
+  line-height: 1.05;
+  color: var(--blanco);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.ct-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 40px;
+  max-width: 380px;
+}
+
+.ct-btn {
+  display: inline-block;
+  align-self: flex-start;   /* no se estira al ancho del flex parent */
+  background: transparent;
+  color: var(--blanco);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 32px;
+  position: relative;
+  border: none;
+  white-space: nowrap;
+}
+/* SVG óvalo del botón — inyectado por JS */
+.ct-btn .ct-oval {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Bloque derecho — blanco */
+.ct-right {
+  padding: clamp(64px, 8vw, 112px) clamp(40px, 5vw, 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 36px;
+  border-left: 1px solid var(--linea);
+}
+
+.ct-item-label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gris-txt);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ct-item-label::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amarillo);
+  flex-shrink: 0;
+}
+.ct-item-value {
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  color: var(--negro);
+}
+
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  background: var(--blanco);
+  border-top: 1px solid var(--linea);
+  padding: 40px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-logo .l-c { color: rgba(17,16,16,0.35); }
+.footer-logo .l-t { color: var(--negro); }
+.footer-logo .l-dot-y { background: var(--amarillo); }
+.footer-logo .l-dot-r { background: var(--rojo); }
+
+.footer-copy {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(17,16,16,0.35);
+}
+
+.footer-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  color: rgba(17,16,16,0.45);
+}
+.footer-tagline em { color: var(--rojo); font-style: normal; }
+
+
+/* ══════════════════════════════
+   RESPONSIVE
+══════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  nav.solid { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  #hero { height: 100svh; }
+  .hero-content { padding: 0 24px 40px; }
+  .hero-scroll { display: none; }
+  .hero-divider { display: none; }
+  .hero-videos { grid-template-columns: 1fr; }
+  .hv-item:nth-child(2) { display: none; }
+
+  #logo-reveal { padding: 64px 24px; }
+  .lr-twist { font-size: clamp(64px, 18vw, 100px); }
+
+  #sobre { grid-template-columns: 1fr; min-height: auto; }
+  .sc-left { padding: 64px 24px; border-right: none; border-bottom: 1px solid var(--linea); }
+  .sc-flipbook { height: 80vw; min-height: 300px; max-height: 520px; }
+
+  .sv-container, .gl-container { padding: 0 24px; }
+  .sv-header { grid-template-columns: 1fr; gap: 20px; }
+  .sv-item { grid-template-columns: 40px 1fr 20px; gap: 16px; }
+
+  .gl-grid { grid-template-columns: 1fr 1fr; }
+  .gl-item.large { grid-row: span 1; }
+
+  .ct-grid { grid-template-columns: 1fr; }
+  .ct-right { border-left: none; border-top: 1px solid var(--linea); }
+
+  footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+  nav { padding: 22px 36px; }
+}
+
+/* ══════════════════════════════
+   REVEAL ANIMATIONS
+══════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════
+     NAV
+═════════════════════ -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="l-c">Classic</span>
+    <span class="l-twist-row">
+      <span class="l-dots-v">
+        <span class="l-dot-y"></span>
+        <span class="l-dot-r"></span>
+      </span>
+      <span class="l-t">Twist</span>
+    </span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre Classic</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="galeria.html">Galería</a></li>
+    <li><a href="https://u5kjy.share.hsforms.com/244sGq6KZTMa5v41N2JdcyQ" target="_blank" class="nav-cta">Contacto</a></li>
+  </ul>
+
+  <div class="hamburger" id="ham" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#sobre"     onclick="toggleMenu()">Sobre Classic</a>
+  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+  <a href="galeria.html" onclick="toggleMenu()">Galería</a>
+  <a href="#contacto"  onclick="toggleMenu()" class="mm-cta">Contacto</a>
+</div>
+
+
+<!-- ══════════════════
+     HERO — 2 VIDEOS
+═════════════════════ -->
+<section id="hero">
+
+  <div class="hero-videos">
+
+    <!-- VIDEO 1 — izquierda -->
+    <div class="hv-item">
+      <video id="vid-hym" autoplay muted playsinline loop>
+        <source src="../04. FOTOS- VIDEOS POR EVENTO/VIDEOS/HYM/VIDEOS PARA WEB/WhatsApp Video 2026-03-26 at 6.08.44 PM.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- VIDEO 2 — derecha -->
+    <div class="hv-item">
+      <video id="vid-only" autoplay muted playsinline loop>
+        <source src="../04. FOTOS- VIDEOS POR EVENTO/VIDEOS/HYM/VIDEOS PARA WEB/WhatsApp Video 2026-03-26 at 6.29.12 PM.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+
+  <div class="hero-divider"></div>
+
+  <div class="hero-scroll">
+    <span class="hs-label">Scroll</span>
+    <div class="hs-line"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Dirección creativa aplicada al líquido</p>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════
+     TICKER
+═════════════════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item">Classic Twist</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Food Design</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Dirección Creativa</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Experiencias Líquidas</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Coctelería de Autor</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Uruguay</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Classic Twist</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Food Design</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Dirección Creativa</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Experiencias Líquidas</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Coctelería de Autor</span><span class="ticker-sep"><span></span><span></span></span>
+    <span class="ticker-item">Uruguay</span><span class="ticker-sep"><span></span><span></span></span>
+  </div>
+</div>
+
+
+<!-- ══════════════════
+     LOGO REVEAL
+═════════════════════ -->
+<section id="logo-reveal">
+
+  <!-- Izquierda: logo -->
+  <div class="lr-left">
+    <div class="lr-logo reveal reveal-d1">
+      <span class="lr-classic">Classic</span>
+      <div class="lr-twist-row">
+        <span class="lr-dots-v">
+          <span class="lr-dot-y"></span>
+          <span class="lr-dot-r"></span>
+        </span>
+        <span class="lr-twist">Twist</span>
+      </div>
+    </div>
+    <div class="lr-eyebrow reveal reveal-d2">Estudio de experiencias líquidas</div>
+  </div>
+
+  <!-- Derecha: boceto acuarela -->
+  <div class="lr-right reveal reveal-d3">
+    <img class="lr-cocktail"
+         src="assets/img/boceto/boceto_transparente.png"
+         alt="Boceto de cóctel — Classic Twist"
+    />
+  </div>
+
+</section>
+
+
+<!-- ══════════════════
+     SOBRE CLASSIC
+═════════════════════ -->
+<section id="sobre">
+
+  <div class="sc-left">
+    <div class="sc-label reveal">Sobre Classic</div>
+
+    <h2>
+      <span class="sc-big reveal reveal-d1">Estudio de</span>
+      <span class="sc-big-red reveal reveal-d2">experiencias<br>líquidas.</span>
+    </h2>
+
+    <p class="sc-body reveal reveal-d3">
+      Integramos coctelería, mixología y dirección creativa para desarrollar propuestas a medida.
+      Cada decisión responde a un concepto.
+    </p>
+
+    <div class="sc-pillars reveal reveal-d3">
+
+      <div class="sc-pillar">
+        <span class="sp-num">01</span>
+        <span class="sp-title">Laboratorio</span>
+        <p class="sp-body">Exploramos técnicas, sabores y mixología para llegar a resultados contemporáneos y diferentes. Investigamos antes de ejecutar.</p>
+      </div>
+
+      <div class="sc-pillar">
+        <span class="sp-num">02</span>
+        <span class="sp-title">Dirección Creativa</span>
+        <p class="sp-body">Pensamos cada experiencia como una escena: con identidad, atmósfera y narrativa.</p>
+      </div>
+
+      <div class="sc-pillar">
+        <span class="sp-num">03</span>
+        <span class="sp-title">Operación Cuidada</span>
+        <p class="sp-body">El servicio es parte del concepto. Ejecutamos con el mismo cuidado con el que diseñamos.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Flipbook fotos -->
+  <div class="sc-right">
+    <div class="sc-flipbook">
+
+      <div class="qf-page active">
+        <img src="assets/img/general/_AG36874.jpg" alt="Classic Twist">
+      </div>
+      <div class="qf-page">
+        <img src="assets/img/general/069CucharaFixed.jpg" alt="Classic Twist">
+      </div>
+      <div class="qf-page">
+        <img src="assets/img/general/168CucharaFixed.jpg" alt="Classic Twist">
+      </div>
+      <div class="qf-page">
+        <img src="assets/img/general/DSC09225.jpg" alt="Classic Twist">
+      </div>
+      <div class="qf-page">
+        <img src="assets/img/general/DSC_7646.jpg" alt="Classic Twist">
+      </div>
+      <div class="qf-page">
+        <img src="../08.WEB/FOTOS 2/COMPRESSED/7.jpg" alt="Classic Twist">
+      </div>
+
+      <div class="qf-counter">
+        <span class="qf-cur">01</span>
+        <span> // FOTOS</span>
+      </div>
+
+      <div class="qf-dots">
+        <span class="qf-dot active"></span>
+        <span class="qf-dot"></span>
+        <span class="qf-dot"></span>
+        <span class="qf-dot"></span>
+        <span class="qf-dot"></span>
+        <span class="qf-dot"></span>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════
+     SERVICIOS
+═════════════════════ -->
+<section id="servicios">
+  <div class="sv-container">
+
+    <div class="sv-header">
+      <div>
+        <div class="sv-label reveal">Lo que hacemos</div>
+        <h2 class="sv-title reveal reveal-d1">
+          Experiencias<br>a medida.
+        </h2>
+      </div>
+      <p class="sv-desc reveal reveal-d2">
+        Cada propuesta es única. Trabajamos desde el brief hasta la copa,
+        integrando creatividad, operación y estética.
+      </p>
+    </div>
+
+    <div class="sv-list reveal">
+
+      <!-- 01 Eventos corporativos -->
+      <div class="sv-item" data-target="expand-01">
+        <span class="sv-num">01</span>
+        <span class="sv-name">Eventos corporativos</span>
+        <a class="sv-ver-mas" onclick="return false;"><span class="sv-ver-mas-label"></span></a>
+      </div>
+      <div class="sv-expand" id="expand-01">
+        <div class="sv-expand-inner">
+          <p class="sv-expand-text">Desde la fiesta de fin de año hasta una presentación de marca — diseñamos la barra para que hable el mismo idioma que tu empresa. Nos adaptamos al evento, al espacio y a las necesidades de cada cliente.</p>
+          <div class="sv-expand-photos">
+            <img src="assets/img/eventos-corporativos/_DSC7744.jpg" alt="Eventos corporativos — Classic Twist">
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 Lanzamiento de productos -->
+      <div class="sv-item" data-target="expand-02">
+        <span class="sv-num">02</span>
+        <span class="sv-name">Lanzamiento de productos</span>
+        <a class="sv-ver-mas" onclick="return false;"><span class="sv-ver-mas-label"></span></a>
+      </div>
+      <div class="sv-expand" id="expand-02">
+        <div class="sv-expand-inner">
+          <p class="sv-expand-text">Cada lanzamiento merece una primera impresión que se recuerde. Diseñamos el cóctel y el mocktail, la puesta en escena de la barra y el styling del equipo para que todo hable el mismo idioma que el producto. Co-creamos con la marca para que cada detalle cuente la historia desde antes del primer sorbo.</p>
+          <div>
+            <div class="sv-expand-photos" data-slider>
+              <img src="assets/img/lanzamiento/DSC_0591.jpg" alt="Lanzamiento de productos — Classic Twist" class="active">
+              <img src="assets/img/lanzamiento/_YM_7427.jpg" alt="Lanzamiento de productos — Classic Twist">
+              <img src="assets/img/lanzamiento/DSC_2560.jpg" alt="Lanzamiento de productos — Classic Twist">
+              <img src="assets/img/lanzamiento/DSC_2562_1.jpg" alt="Lanzamiento de productos — Classic Twist">
+            </div>
+            <div class="sv-slider-controls">
+              <button class="sv-slider-btn" data-prev>←</button>
+              <div class="sv-slider-dots">
+                <span class="sv-slider-dot active"></span>
+                <span class="sv-slider-dot"></span>
+                <span class="sv-slider-dot"></span>
+                <span class="sv-slider-dot"></span>
+              </div>
+              <button class="sv-slider-btn" data-next>→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 Celebraciones privadas -->
+      <div class="sv-item" data-target="expand-03">
+        <span class="sv-num">03</span>
+        <span class="sv-name">Celebraciones privadas</span>
+        <a class="sv-ver-mas" onclick="return false;"><span class="sv-ver-mas-label"></span></a>
+      </div>
+      <div class="sv-expand" id="expand-03">
+        <div class="sv-expand-inner">
+          <p class="sv-expand-text">Desde una reunión íntima hasta el casamiento de tus sueños — nos adaptamos al momento y a quien lo vive. Podemos acompañar con un servicio impecable o diseñar cada detalle desde el primer trago de bienvenida hasta el último brindis. Siempre con identidad, siempre con intención.</p>
+          <div>
+            <div class="sv-expand-photos" data-slider style="aspect-ratio: 2/3;">
+              <img src="assets/img/celebraciones/DSC00837.jpg" alt="Celebraciones privadas — Classic Twist" class="active">
+              <img src="assets/img/celebraciones/DSC00948.jpg" alt="Celebraciones privadas — Classic Twist">
+              <img src="assets/img/celebraciones/DSC00960.jpg" alt="Celebraciones privadas — Classic Twist">
+              <img src="assets/img/celebraciones/DSC00991.jpg" alt="Celebraciones privadas — Classic Twist">
+              <img src="assets/img/celebraciones/DSC01003.jpg" alt="Celebraciones privadas — Classic Twist">
+            </div>
+            <div class="sv-slider-controls">
+              <button class="sv-slider-btn" data-prev>←</button>
+              <div class="sv-slider-dots">
+                <span class="sv-slider-dot active"></span>
+                <span class="sv-slider-dot"></span>
+                <span class="sv-slider-dot"></span>
+                <span class="sv-slider-dot"></span>
+                <span class="sv-slider-dot"></span>
+              </div>
+              <button class="sv-slider-btn" data-next>→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 Talleres -->
+      <div class="sv-item" data-target="expand-04">
+        <span class="sv-num">04</span>
+        <span class="sv-name">Talleres</span>
+        <a class="sv-ver-mas" onclick="return false;"><span class="sv-ver-mas-label"></span></a>
+      </div>
+      <div class="sv-expand" id="expand-04">
+        <div class="sv-expand-inner">
+          <p class="sv-expand-text">Próximamente.</p>
+          <div class="sv-expand-photos"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════
+     CONFÍAN EN NOSOTROS
+═════════════════════ -->
+<section id="clientes">
+  <div class="cl-container">
+    <div class="cl-label reveal">Confían en nosotros</div>
+    <div class="cl-logos reveal reveal-d1">
+      <!-- Los logos se agregan acá como <img> cuando estén disponibles -->
+      <div class="cl-logo-placeholder">Logo 1</div>
+      <div class="cl-logo-placeholder">Logo 2</div>
+      <div class="cl-logo-placeholder">Logo 3</div>
+      <div class="cl-logo-placeholder">Logo 4</div>
+      <div class="cl-logo-placeholder">Logo 5</div>
+      <div class="cl-logo-placeholder">Logo 6</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════
+     CONTACTO
+═════════════════════ -->
+<section id="contacto">
+  <div class="ct-grid">
+
+    <div class="ct-left">
+      <div class="ct-label">Hablemos</div>
+      <h2 class="ct-title">
+        Tu próximo evento<br>
+        empieza con<br>
+        una idea.
+      </h2>
+      <p class="ct-sub">
+        Contanos qué estás planeando. Nos encanta el primer contacto.
+      </p>
+      <a href="https://u5kjy.share.hsforms.com/244sGq6KZTMa5v41N2JdcyQ" target="_blank" class="ct-btn">Escribinos →</a>
+    </div>
+
+    <div class="ct-right">
+      <div>
+        <div class="ct-item-label">Email</div>
+        <div class="ct-item-value">propuestas@classictwist.uy</div>
+      </div>
+      <div>
+        <div class="ct-item-label">Instagram</div>
+        <div class="ct-item-value">@classictwist.uy</div>
+      </div>
+      <div>
+        <div class="ct-item-label">Ubicación</div>
+        <div class="ct-item-value">Uruguay</div>
+      </div>
+      <div>
+        <div class="ct-item-label">Disponibilidad</div>
+        <div class="ct-item-value">Agenda abierta 2026</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════
+     FOOTER
+═════════════════════ -->
+<footer>
+  <a href="index.html" class="nav-logo footer-logo">
+    <span class="l-c">Classic</span>
+    <span class="l-twist-row">
+      <span class="l-dots-v">
+        <span class="l-dot-y"></span>
+        <span class="l-dot-r"></span>
+      </span>
+      <span class="l-t">Twist</span>
+    </span>
+  </a>
+  <span class="footer-tagline">Dirección creativa aplicada al <em>líquido.</em></span>
+  <span class="footer-copy">© 2026 Classic Twist · Uruguay</span>
+</footer>
+
+
+<!-- ══════════════════
+     JS
+═════════════════════ -->
+<script>
+// Nav scroll → fondo blanco
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 60);
+});
+
+// ── Óvalos SVG en el nav ──
+// • Links normales  → elipse se dibuja al hacer hover
+// • Contacto (.nav-cta) → elipse siempre visible, desaparece
+//   cuando el mouse entra en cualquier otro link del nav
+document.fonts.ready.then(() => {
+  const ns        = 'http://www.w3.org/2000/svg';
+  const allLis    = Array.from(document.querySelectorAll('.nav-links li'));
+  let   ctaEl     = null;   // referencia a la <ellipse> de Contacto
+  let   ctaLen    = 0;
+
+  allLis.forEach(li => {
+    const link  = li.querySelector('a');
+    const isCta = link.classList.contains('nav-cta');
+
+    // Padding alrededor del texto
+    const px = isCta ? 18 : 16;
+    const py = isCta ? 10 : 9;
+
+    const lw = link.offsetWidth;
+    const lh = link.offsetHeight;
+    const W  = lw + px * 2;
+    const H  = lh + py * 2;
+    const cx = W / 2;
+    const cy = H / 2;
+    const rx = W / 2 - 2;
+    const ry = H / 2 - 1;
+
+    // SVG contenedor
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('width',   W);
+    svg.setAttribute('height',  H);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.classList.add('nav-oval');
+
+    // <ellipse> — perfectamente centrada, sin torcerse
+    const ell = document.createElementNS(ns, 'ellipse');
+    ell.setAttribute('cx', cx);
+    ell.setAttribute('cy', cy);
+    ell.setAttribute('rx', rx);
+    ell.setAttribute('ry', ry);
+    ell.setAttribute('fill',           'none');
+    ell.setAttribute('stroke',         '#D4232A');
+    ell.setAttribute('stroke-width',   '1.5');
+    ell.setAttribute('stroke-linecap', 'round');
+
+    svg.appendChild(ell);
+    li.appendChild(svg);
+
+    // Perímetro con fórmula de Ramanujan
+    const a = rx, b = ry;
+    const len = Math.PI * (3*(a+b) - Math.sqrt((3*a+b)*(a+3*b)));
+
+    ell.style.strokeDasharray = len;
+
+    if (isCta) {
+      // ── CONTACTO: siempre visible ──
+      ell.style.strokeDashoffset = 0;
+      ell.style.transition = 'stroke-dashoffset 0.35s ease, opacity 0.3s ease';
+      ctaEl  = ell;
+      ctaLen = len;
+    } else {
+      // ── LINKS NORMALES: se dibuja en hover ──
+      ell.style.strokeDashoffset = len;
+      ell.style.transition = 'stroke-dashoffset 0.45s cubic-bezier(0.4,0,0.2,1)';
+
+      li.addEventListener('mouseenter', () => {
+        ell.style.strokeDashoffset = 0;
+        // Esconder el óvalo de Contacto mientras hover en otro link
+        if (ctaEl) {
+          ctaEl.style.strokeDashoffset = ctaLen;
+        }
+      });
+      li.addEventListener('mouseleave', () => {
+        ell.style.strokeDashoffset = len;
+        // Restaurar el óvalo de Contacto
+        if (ctaEl) {
+          ctaEl.style.strokeDashoffset = 0;
+        }
+      });
+    }
+  });
+});
+
+// Sliders de fotos en paneles de servicios
+document.querySelectorAll('.sv-expand-photos[data-slider]').forEach(photos => {
+  const imgs  = Array.from(photos.querySelectorAll('img'));
+  const wrap  = photos.parentElement;
+  const dots  = Array.from(wrap.querySelectorAll('.sv-slider-dot'));
+  const prev  = wrap.querySelector('[data-prev]');
+  const next  = wrap.querySelector('[data-next]');
+  let current = 0;
+
+  function goTo(n) {
+    imgs[current].classList.remove('active');
+    imgs[current].classList.add('inactive');
+    dots[current] && dots[current].classList.remove('active');
+    current = (n + imgs.length) % imgs.length;
+    imgs[current].classList.add('active');
+    imgs[current].classList.remove('inactive');
+    dots[current] && dots[current].classList.add('active');
+  }
+
+  prev && prev.addEventListener('click', e => { e.stopPropagation(); goTo(current - 1); });
+  next && next.addEventListener('click', e => { e.stopPropagation(); goTo(current + 1); });
+  dots.forEach((d, i) => d.addEventListener('click', e => { e.stopPropagation(); goTo(i); }));
+});
+
+// Accordion servicios — click en sv-item expande el panel
+document.querySelectorAll('.sv-item[data-target]').forEach(item => {
+  item.addEventListener('click', () => {
+    const targetId = item.getAttribute('data-target');
+    const panel    = document.getElementById(targetId);
+    const isOpen   = item.classList.contains('open');
+
+    // Cerrar todos los demás
+    document.querySelectorAll('.sv-item.open').forEach(i => i.classList.remove('open'));
+    document.querySelectorAll('.sv-expand.open').forEach(p => p.classList.remove('open'));
+
+    // Abrir/cerrar el clickeado
+    if (!isOpen) {
+      item.classList.add('open');
+      panel.classList.add('open');
+    }
+  });
+});
+
+// Óvalos SVG para los "Ver más" de servicios — rojo, aparece en hover del sv-item
+document.fonts.ready.then(() => {
+  const ns = 'http://www.w3.org/2000/svg';
+  document.querySelectorAll('.sv-ver-mas').forEach(link => {
+    const px = 14, py = 8;
+    const lw = link.offsetWidth;
+    const lh = link.offsetHeight;
+    const W  = lw + px * 2;
+    const H  = lh + py * 2;
+    const cx = W / 2, cy = H / 2;
+    const rx = W / 2 - 2;
+    const ry = H / 2 - 1;
+
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('width',   W);
+    svg.setAttribute('height',  H);
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.classList.add('sv-oval');
+
+    const ell = document.createElementNS(ns, 'ellipse');
+    ell.setAttribute('cx', cx);
+    ell.setAttribute('cy', cy);
+    ell.setAttribute('rx', rx);
+    ell.setAttribute('ry', ry);
+    ell.setAttribute('fill',           'none');
+    ell.setAttribute('stroke',         '#D4232A');
+    ell.setAttribute('stroke-width',   '1.5');
+    ell.setAttribute('stroke-linecap', 'round');
+
+    const a = rx, b = ry;
+    const len = Math.PI * (3*(a+b) - Math.sqrt((3*a+b)*(a+3*b)));
+    ell.style.strokeDasharray  = len;
+    ell.style.strokeDashoffset = len; // oculto por defecto
+    ell.style.transition = 'stroke-dashoffset 0.45s cubic-bezier(0.4,0,0.2,1)';
+
+    svg.appendChild(ell);
+    link.appendChild(svg);
+
+    // El sv-item padre controla el hover
+    const item = link.closest('.sv-item');
+    if (item) {
+      item.addEventListener('mouseenter', () => { ell.style.strokeDashoffset = 0; });
+      item.addEventListener('mouseleave', () => { ell.style.strokeDashoffset = len; });
+    }
+  });
+});
+
+// Óvalo SVG para el botón Escribinos (igual que nav-cta pero en blanco)
+document.fonts.ready.then(() => {
+  const ns  = 'http://www.w3.org/2000/svg';
+  const btn = document.querySelector('.ct-btn');
+  if (!btn) return;
+
+  const px = 22, py = 12;
+  const lw = btn.offsetWidth;
+  const lh = btn.offsetHeight;
+  const W  = lw + px * 2;
+  const H  = lh + py * 2;
+  const cx = W / 2, cy = H / 2;
+  const rx = W / 2 - 2;
+  const ry = H / 2 - 1;
+
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('width',   W);
+  svg.setAttribute('height',  H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.classList.add('ct-oval');
+
+  const ell = document.createElementNS(ns, 'ellipse');
+  ell.setAttribute('cx', cx);
+  ell.setAttribute('cy', cy);
+  ell.setAttribute('rx', rx);
+  ell.setAttribute('ry', ry);
+  ell.setAttribute('fill',           'none');
+  ell.setAttribute('stroke',         '#FFFFFF');
+  ell.setAttribute('stroke-width',   '1.5');
+  ell.setAttribute('stroke-linecap', 'round');
+
+  const a = rx, b = ry;
+  const len = Math.PI * (3*(a+b) - Math.sqrt((3*a+b)*(a+3*b)));
+  ell.style.strokeDasharray  = len;
+  ell.style.strokeDashoffset = 0;   // siempre visible
+
+  svg.appendChild(ell);
+  btn.appendChild(svg);
+});
+
+// Mobile menu
+function toggleMenu() {
+  const ham  = document.getElementById('ham');
+  const menu = document.getElementById('mobile-menu');
+  ham.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.10 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Flipbook auto-advance
+(function() {
+  const pages = Array.from(document.querySelectorAll('.qf-page'));
+  const dots  = Array.from(document.querySelectorAll('.qf-dot'));
+  const curEl = document.querySelector('.qf-cur');
+  const n     = pages.length;
+  let cur     = 0;
+
+  function goTo(i) {
+    pages[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = ((i % n) + n) % n;
+    pages[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    if (curEl) curEl.textContent = String(cur + 1).padStart(2, '0');
+  }
+
+  setInterval(() => goTo(cur + 1), 1600);
+})();
+
+// Playlist secuencial para los videos del hero
+document.querySelectorAll('.hv-item video[data-playlist]').forEach(vid => {
+  const playlist = JSON.parse(vid.dataset.playlist);
+  let idx = 0;
+  vid.addEventListener('ended', () => {
+    idx = (idx + 1) % playlist.length;
+    vid.src = playlist[idx];
+    vid.load();
+    vid.play();
+  });
+});
+</script>
+</body>
+</html>

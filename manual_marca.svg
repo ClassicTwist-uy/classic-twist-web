@@ -1,0 +1,404 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="5600" viewBox="0 0 900 5600">
+<defs>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200;300&amp;family=Fraunces:ital,opsz,wght@1,9..144,200;1,9..144,300&amp;family=DM+Sans:wght@200;300;400&amp;display=swap');
+    .f-unbounded { font-family: 'Unbounded', sans-serif; }
+    .f-fraunces  { font-family: 'Fraunces', serif; font-style: italic; }
+    .f-dm        { font-family: 'DM Sans', sans-serif; }
+  </style>
+</defs>
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 1 — PORTADA
+═══════════════════════════════════════════ -->
+<rect x="0" y="0" width="900" height="700" fill="#FFFFFF"/>
+
+<!-- Franja roja izquierda -->
+<rect x="64" y="64" width="2" height="572" fill="#D4232A"/>
+
+<!-- Label -->
+<text x="88" y="108" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">MANUAL DE MARCA  ·  2026</text>
+
+<!-- Logo grande -->
+<text x="450" y="308" class="f-unbounded" font-size="15" fill="rgba(17,16,16,0.4)" letter-spacing="8" text-anchor="middle">CLASSIC</text>
+
+<!-- Dos puntos -->
+<circle cx="308" cy="338" r="6" fill="#FFD600"/>
+<circle cx="308" cy="356" r="6" fill="#D4232A"/>
+<!-- Twist -->
+<text x="324" y="368" class="f-fraunces" font-size="90" fill="#111010" letter-spacing="-1">Twist</text>
+
+<!-- Tagline -->
+<text x="450" y="436" class="f-fraunces" font-size="16" fill="#7A7370" text-anchor="middle">Dirección creativa aplicada al líquido.</text>
+
+<!-- Separador -->
+<rect x="88" y="580" width="748" height="1" fill="#E8E4E0"/>
+
+<!-- Footer portada -->
+<text x="88" y="614" class="f-dm" font-size="10" fill="rgba(17,16,16,0.35)" letter-spacing="2">ESTUDIO DE EXPERIENCIAS LÍQUIDAS</text>
+<text x="812" y="614" class="f-dm" font-size="10" fill="rgba(17,16,16,0.35)" letter-spacing="2" text-anchor="end">URUGUAY</text>
+
+<!-- Número de página -->
+<text x="450" y="656" class="f-dm" font-size="10" fill="#E8E4E0" text-anchor="middle" letter-spacing="3">01</text>
+
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 2 — EL LOGO
+═══════════════════════════════════════════ -->
+<rect x="0" y="700" width="900" height="700" fill="#FFFFFF"/>
+<rect x="0" y="700" width="900" height="1" fill="#E8E4E0"/>
+
+<!-- Franja roja -->
+<rect x="64" y="764" width="2" height="572" fill="#D4232A"/>
+
+<!-- Label sección -->
+<text x="88" y="764" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">EL LOGO</text>
+<rect x="88" y="772" width="32" height="1" fill="#D4232A"/>
+
+<!-- Título sección -->
+<text x="88" y="814" class="f-fraunces" font-size="48" fill="#111010">Identidad.</text>
+
+<!-- Columna izquierda — logo sobre blanco -->
+<rect x="88" y="850" width="346" height="260" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="261" y="948" class="f-unbounded" font-size="11" fill="rgba(17,16,16,0.45)" letter-spacing="6" text-anchor="middle">CLASSIC</text>
+<circle cx="184" cy="968" r="5" fill="#FFD600"/>
+<circle cx="184" cy="982" r="5" fill="#D4232A"/>
+<text x="197" y="997" class="f-fraunces" font-size="60" fill="#111010">Twist</text>
+<text x="261" y="1048" class="f-dm" font-size="9" fill="#7A7370" text-anchor="middle" letter-spacing="3">SOBRE FONDO BLANCO</text>
+
+<!-- Columna derecha — logo sobre rojo -->
+<rect x="466" y="850" width="346" height="260" fill="#D4232A" rx="2"/>
+<text x="639" y="948" class="f-unbounded" font-size="11" fill="rgba(255,255,255,0.55)" letter-spacing="6" text-anchor="middle">CLASSIC</text>
+<circle cx="562" cy="968" r="5" fill="#FFD600"/>
+<circle cx="562" cy="982" r="5" fill="rgba(255,255,255,0.8)"/>
+<text x="575" y="997" class="f-fraunces" font-size="60" fill="#FFFFFF">Twist</text>
+<text x="639" y="1048" class="f-dm" font-size="9" fill="rgba(255,255,255,0.55)" text-anchor="middle" letter-spacing="3">SOBRE FONDO ROJO</text>
+
+<!-- Nota zona de respeto -->
+<text x="88" y="1148" class="f-dm" font-size="11" fill="#7A7370" letter-spacing="1">Zona de respeto</text>
+<text x="88" y="1168" class="f-dm" font-size="13" fill="#111010">Mantener siempre un espacio libre alrededor del logo equivalente</text>
+<text x="88" y="1186" class="f-dm" font-size="13" fill="#111010">a la altura de la letra "T" de Twist.</text>
+
+<!-- Versión mínima -->
+<text x="88" y="1228" class="f-dm" font-size="11" fill="#7A7370" letter-spacing="1">Tamaño mínimo</text>
+<text x="88" y="1248" class="f-dm" font-size="13" fill="#111010">"Twist" no debe aparecer con menos de 24px de altura.</text>
+
+<!-- Número página -->
+<rect x="0" y="1384" width="900" height="1" fill="#E8E4E0"/>
+<text x="450" y="1372" class="f-dm" font-size="10" fill="#E8E4E0" text-anchor="middle" letter-spacing="3">02</text>
+
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 3 — TIPOGRAFÍA
+═══════════════════════════════════════════ -->
+<rect x="0" y="1400" width="900" height="700" fill="#FFFFFF"/>
+<rect x="0" y="1400" width="900" height="1" fill="#E8E4E0"/>
+
+<!-- Franja roja -->
+<rect x="64" y="1464" width="2" height="572" fill="#D4232A"/>
+
+<text x="88" y="1464" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">TIPOGRAFÍA</text>
+<rect x="88" y="1472" width="32" height="1" fill="#D4232A"/>
+<text x="88" y="1514" class="f-fraunces" font-size="48" fill="#111010">Las fuentes.</text>
+
+<!-- Fraunces -->
+<rect x="88" y="1540" width="356" height="340" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="110" y="1594" class="f-dm" font-size="9" fill="#7A7370" letter-spacing="3">FRAUNCES  ·  TÍTULOS DE SECCIÓN</text>
+<text x="110" y="1660" class="f-fraunces" font-size="52" fill="#111010">Experiencias</text>
+<text x="110" y="1715" class="f-fraunces" font-size="52" fill="#D4232A">líquidas.</text>
+<rect x="110" y="1740" width="312" height="1" fill="#E8E4E0"/>
+<text x="110" y="1764" class="f-dm" font-size="11" fill="#7A7370">Pesos usados: 200 · 300</text>
+<text x="110" y="1784" class="f-dm" font-size="11" fill="#7A7370">Siempre en cursiva (italic)</text>
+<text x="110" y="1822" class="f-fraunces" font-size="18" fill="#111010">Aa Bb Cc Dd Ee Ff Gg</text>
+<text x="110" y="1848" class="f-fraunces" font-size="18" fill="#111010">Hh Ii Jj Kk Ll Mm Nn</text>
+<text x="110" y="1874" class="f-fraunces" font-size="11" fill="#7A7370">0 1 2 3 4 5 6 7 8 9</text>
+
+<!-- DM Sans -->
+<rect x="472" y="1540" width="340" height="340" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="494" y="1594" class="f-dm" font-size="9" fill="#7A7370" letter-spacing="3">DM SANS  ·  NAV, CUERPO, LABELS</text>
+<text x="494" y="1655" class="f-dm" font-size="44" font-weight="200" fill="#111010">Estudio de</text>
+<text x="494" y="1700" class="f-dm" font-size="18" font-weight="300" fill="#111010">coctelería y dirección creativa.</text>
+<rect x="494" y="1740" width="296" height="1" fill="#E8E4E0"/>
+<text x="494" y="1764" class="f-dm" font-size="11" fill="#7A7370">Pesos usados: 200 · 300 · 400</text>
+<text x="494" y="1784" class="f-dm" font-size="11" fill="#7A7370">Normal — nunca italic en cuerpo</text>
+<text x="494" y="1822" class="f-dm" font-size="16" font-weight="200" fill="#111010">SOBRE CLASSIC  ·  SERVICIOS</text>
+<text x="494" y="1848" class="f-dm" font-size="13" font-weight="300" fill="#111010">Texto de párrafo, tamaño mínimo 13px</text>
+<text x="494" y="1874" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="3">LABELS EN MAYÚSCULAS</text>
+
+<!-- Regla Unbounded — blanco con franja roja izquierda -->
+<rect x="88" y="1900" width="724" height="56" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<rect x="88" y="1900" width="4" height="56" fill="#D4232A" rx="2"/>
+<text x="108" y="1926" class="f-unbounded" font-size="10" fill="#111010" letter-spacing="4">UNBOUNDED</text>
+<text x="108" y="1944" class="f-dm" font-size="11" fill="#7A7370">Exclusivo del logo "CLASSIC". No usar en ningún otro contexto.</text>
+<circle cx="792" cy="1926" r="4" fill="#FFD600"/>
+<circle cx="806" cy="1926" r="4" fill="#D4232A"/>
+
+<!-- Número página -->
+<rect x="0" y="2084" width="900" height="1" fill="#E8E4E0"/>
+<text x="450" y="2072" class="f-dm" font-size="10" fill="#E8E4E0" text-anchor="middle" letter-spacing="3">03</text>
+
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 4 — PALETA DE COLOR
+═══════════════════════════════════════════ -->
+<rect x="0" y="2100" width="900" height="700" fill="#FFFFFF"/>
+<rect x="0" y="2100" width="900" height="1" fill="#E8E4E0"/>
+
+<!-- Franja roja -->
+<rect x="64" y="2164" width="2" height="572" fill="#D4232A"/>
+
+<text x="88" y="2164" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">PALETA DE COLOR</text>
+<rect x="88" y="2172" width="32" height="1" fill="#D4232A"/>
+<text x="88" y="2214" class="f-fraunces" font-size="48" fill="#111010">El color.</text>
+
+<!-- Swatches fila 1 -->
+<!-- Rojo -->
+<rect x="88"  y="2240" width="176" height="220" fill="#D4232A" rx="2"/>
+<text x="108" y="2290" class="f-dm" font-size="11" fill="rgba(255,255,255,0.7)" letter-spacing="2">ROJO</text>
+<text x="108" y="2390" class="f-dm" font-size="20" font-weight="200" fill="#FFFFFF">#D4232A</text>
+<text x="108" y="2412" class="f-dm" font-size="10" fill="rgba(255,255,255,0.6)">Primario — siempre texto blanco</text>
+
+<!-- Negro -->
+<rect x="280" y="2240" width="176" height="220" fill="#111010" rx="2"/>
+<text x="300" y="2290" class="f-dm" font-size="11" fill="rgba(255,255,255,0.7)" letter-spacing="2">NEGRO</text>
+<text x="300" y="2390" class="f-dm" font-size="20" font-weight="200" fill="#FFFFFF">#111010</text>
+<text x="300" y="2412" class="f-dm" font-size="10" fill="rgba(255,255,255,0.6)">Texto principal sobre blanco</text>
+
+<!-- Blanco -->
+<rect x="472" y="2240" width="176" height="220" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="492" y="2290" class="f-dm" font-size="11" fill="#7A7370" letter-spacing="2">BLANCO</text>
+<text x="492" y="2390" class="f-dm" font-size="20" font-weight="200" fill="#111010">#FFFFFF</text>
+<text x="492" y="2412" class="f-dm" font-size="10" fill="#7A7370">Fondo dominante de la web</text>
+
+<!-- Amarillo -->
+<rect x="664" y="2240" width="176" height="220" fill="#FFD600" rx="2"/>
+<text x="684" y="2290" class="f-dm" font-size="11" fill="rgba(17,16,16,0.55)" letter-spacing="2">AMARILLO</text>
+<text x="684" y="2390" class="f-dm" font-size="20" font-weight="200" fill="#111010">#FFD600</text>
+<text x="684" y="2412" class="f-dm" font-size="10" fill="rgba(17,16,16,0.55)">Solo sobre blanco — acento</text>
+
+<!-- REGLAS DE COLOR -->
+<rect x="88" y="2492" width="724" height="1" fill="#E8E4E0"/>
+<text x="88" y="2520" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">REGLAS DE USO</text>
+
+<!-- Regla 1 — OK: amarillo sobre blanco -->
+<rect x="88"  y="2540" width="220" height="64" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<circle cx="110" cy="2572" r="5" fill="#FFD600"/>
+<text x="124"  y="2577" class="f-dm" font-size="13" fill="#111010">Amarillo sobre blanco</text>
+<text x="88"  y="2618" class="f-dm" font-size="10" fill="#27AE60" letter-spacing="2">✓  CORRECTO</text>
+
+<!-- Regla 2 — NO: amarillo sobre negro -->
+<rect x="334" y="2540" width="220" height="64" fill="#111010" rx="2"/>
+<circle cx="356" cy="2572" r="5" fill="#FFD600"/>
+<text x="370" y="2577" class="f-dm" font-size="13" fill="#FFD600">Amarillo sobre negro</text>
+<text x="334" y="2618" class="f-dm" font-size="10" fill="#D4232A" letter-spacing="2">✗  NUNCA</text>
+
+<!-- Regla 3 — OK: blanco sobre rojo -->
+<rect x="580" y="2540" width="232" height="64" fill="#D4232A" rx="2"/>
+<text x="600" y="2577" class="f-dm" font-size="13" fill="#FFFFFF">Texto blanco sobre rojo</text>
+<text x="580" y="2618" class="f-dm" font-size="10" fill="#27AE60" letter-spacing="2">✓  CORRECTO</text>
+
+<!-- Número página -->
+<rect x="0" y="2784" width="900" height="1" fill="#E8E4E0"/>
+<text x="450" y="2772" class="f-dm" font-size="10" fill="#E8E4E0" text-anchor="middle" letter-spacing="3">04</text>
+
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 5 — MOTIVO GRÁFICO Y ÓVALO
+═══════════════════════════════════════════ -->
+<rect x="0" y="2800" width="900" height="700" fill="#FFFFFF"/>
+<rect x="0" y="2800" width="900" height="1" fill="#E8E4E0"/>
+
+<!-- Franja roja -->
+<rect x="64" y="2864" width="2" height="572" fill="#D4232A"/>
+
+<text x="88" y="2864" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">ELEMENTOS GRÁFICOS</text>
+<rect x="88" y="2872" width="32" height="1" fill="#D4232A"/>
+<text x="88" y="2914" class="f-fraunces" font-size="48" fill="#111010">Motivos.</text>
+
+<!-- Motivo: dos puntos -->
+<rect x="88" y="2940" width="356" height="320" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="110" y="2990" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="3">MOTIVO DE DOS PUNTOS</text>
+
+<!-- Demostración grande -->
+<circle cx="210" cy="3090" r="22" fill="#FFD600"/>
+<circle cx="210" cy="3152" r="22" fill="#D4232A"/>
+
+<text x="255" y="3084" class="f-dm" font-size="11" fill="#7A7370">Punto amarillo — arriba</text>
+<text x="255" y="3102" class="f-dm" font-size="11" fill="#7A7370">Punto rojo — abajo</text>
+<text x="255" y="3148" class="f-dm" font-size="11" fill="#7A7370">Proporción: siempre igual</text>
+<text x="255" y="3166" class="f-dm" font-size="11" fill="#7A7370">Gap: equivale al radio del punto</text>
+
+<rect x="110" y="3200" width="312" height="1" fill="#E8E4E0"/>
+<text x="110" y="3224" class="f-dm" font-size="11" fill="#111010">Aparece en: logo, nav, ticker, footer.</text>
+<text x="110" y="3242" class="f-dm" font-size="11" fill="#7A7370">Es la firma visual de la marca.</text>
+
+<!-- Motivo: óvalo hand-drawn -->
+<rect x="472" y="2940" width="340" height="320" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="494" y="2990" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="3">ÓVALO HAND-DRAWN</text>
+
+<!-- Óvalo demo sobre blanco -->
+<rect x="494" y="3010" width="296" height="100" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="642" y="3067" class="f-dm" font-size="11" fill="#111010" text-anchor="middle" letter-spacing="3">SOBRE CLASSIC</text>
+<ellipse cx="642" cy="3060" rx="90" ry="24" fill="none" stroke="#D4232A" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 2"/>
+
+<!-- Óvalo demo sobre rojo -->
+<rect x="494" y="3124" width="296" height="100" fill="#D4232A" rx="2"/>
+<text x="642" y="3181" class="f-dm" font-size="11" fill="#FFFFFF" text-anchor="middle" letter-spacing="3">ESCRIBINOS →</text>
+<ellipse cx="642" cy="3174" rx="90" ry="24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 2"/>
+
+<text x="494" y="3246" class="f-dm" font-size="11" fill="#111010">SVG animado con stroke-dashoffset.</text>
+<text x="494" y="3262" class="f-dm" font-size="11" fill="#7A7370">Se dibuja en hover. En CTAs, visible siempre.</text>
+
+<!-- Contextos de uso — blanco con franja roja -->
+<rect x="88" y="3292" width="724" height="56" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<rect x="88" y="3292" width="4" height="56" fill="#D4232A" rx="2"/>
+<text x="108" y="3314" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="3">CONTEXTOS DE USO</text>
+<text x="108" y="3334" class="f-dm" font-size="12" fill="#111010">Nav links  ·  Botón Contacto  ·  Botón Escribinos  ·  Ver más en Servicios</text>
+
+<!-- Número página -->
+<rect x="0" y="3484" width="900" height="1" fill="#E8E4E0"/>
+<text x="450" y="3472" class="f-dm" font-size="10" fill="#E8E4E0" text-anchor="middle" letter-spacing="3">05</text>
+
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 6 — VOZ Y TONO
+═══════════════════════════════════════════ -->
+<rect x="0" y="3500" width="900" height="700" fill="#FFFFFF"/>
+<rect x="0" y="3500" width="900" height="1" fill="#E8E4E0"/>
+
+<!-- Franja roja -->
+<rect x="64" y="3564" width="2" height="572" fill="#D4232A"/>
+
+<text x="88" y="3564" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">VOZ Y TONO</text>
+<rect x="88" y="3572" width="32" height="1" fill="#D4232A"/>
+<text x="88" y="3614" class="f-fraunces" font-size="48" fill="#111010">La voz.</text>
+
+<!-- Descripción -->
+<text x="88" y="3658" class="f-dm" font-size="14" font-weight="200" fill="#111010">Cercana, sofisticada y directa. Sin jerga de agencia. En español rioplatense.</text>
+
+<!-- Grid de principios -->
+<!-- Principio 1 — rojo (uso válido: fondo rojo + texto blanco) -->
+<rect x="88"  y="3690" width="180" height="160" fill="#D4232A" rx="2"/>
+<text x="108" y="3728" class="f-dm" font-size="10" fill="rgba(255,255,255,0.7)" letter-spacing="2">01</text>
+<text x="108" y="3768" class="f-fraunces" font-size="22" fill="#FFFFFF">Conciso.</text>
+<rect x="108" y="3782" width="140" height="1" fill="rgba(255,255,255,0.25)"/>
+<text x="108" y="3804" class="f-dm" font-size="11" fill="rgba(255,255,255,0.8)">Una idea por frase.</text>
+<text x="108" y="3822" class="f-dm" font-size="11" fill="rgba(255,255,255,0.8)">Sin palabras de relleno.</text>
+
+<!-- Principio 2 -->
+<rect x="284" y="3690" width="180" height="160" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="304" y="3728" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="2">02</text>
+<text x="304" y="3768" class="f-fraunces" font-size="22" fill="#111010">Cercano.</text>
+<rect x="304" y="3782" width="140" height="1" fill="#E8E4E0"/>
+<text x="304" y="3804" class="f-dm" font-size="11" fill="#7A7370">Vos, contanos, estás.</text>
+<text x="304" y="3822" class="f-dm" font-size="11" fill="#7A7370">Tuteo siempre.</text>
+
+<!-- Principio 3 -->
+<rect x="480" y="3690" width="180" height="160" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="500" y="3728" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="2">03</text>
+<text x="500" y="3768" class="f-fraunces" font-size="22" fill="#111010">Intencional.</text>
+<rect x="500" y="3782" width="140" height="1" fill="#E8E4E0"/>
+<text x="500" y="3804" class="f-dm" font-size="11" fill="#7A7370">Cada palabra tiene</text>
+<text x="500" y="3822" class="f-dm" font-size="11" fill="#7A7370">un propósito.</text>
+
+<!-- Principio 4 -->
+<rect x="676" y="3690" width="180" height="160" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="696" y="3728" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="2">04</text>
+<text x="696" y="3768" class="f-fraunces" font-size="22" fill="#111010">Sin clichés.</text>
+<rect x="696" y="3782" width="140" height="1" fill="#E8E4E0"/>
+<text x="696" y="3804" class="f-dm" font-size="11" fill="#7A7370">Evitar: "profesional",</text>
+<text x="696" y="3822" class="f-dm" font-size="11" fill="#7A7370">"de calidad", "único".</text>
+
+<!-- Sí / No ejemplos -->
+<rect x="88" y="3880" width="724" height="1" fill="#E8E4E0"/>
+<text x="88" y="3908" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">EJEMPLOS</text>
+
+<rect x="88"  y="3928" width="352" height="120" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="110" y="3956" class="f-dm" font-size="10" fill="#27AE60" letter-spacing="3">✓  DECIMOS</text>
+<text x="110" y="3982" class="f-fraunces" font-size="16" fill="#111010">"Desde el primer trago de</text>
+<text x="110" y="4002" class="f-fraunces" font-size="16" fill="#111010">bienvenida hasta el último brindis."</text>
+<text x="110" y="4030" class="f-dm" font-size="11" fill="#7A7370">Concreto, sensorial, con intención.</text>
+
+<rect x="460" y="3928" width="352" height="120" fill="#FFFFFF" rx="2" stroke="#E8E4E0" stroke-width="1"/>
+<text x="480" y="3956" class="f-dm" font-size="10" fill="#D4232A" letter-spacing="3">✗  NO DECIMOS</text>
+<text x="480" y="3982" class="f-fraunces" font-size="16" fill="#7A7370">"Ofrecemos servicios de</text>
+<text x="480" y="4002" class="f-fraunces" font-size="16" fill="#7A7370">coctelería de alta calidad."</text>
+<text x="480" y="4030" class="f-dm" font-size="11" fill="#7A7370">Genérico, sin personalidad.</text>
+
+<!-- Número página -->
+<rect x="0" y="4184" width="900" height="1" fill="#E8E4E0"/>
+<text x="450" y="4172" class="f-dm" font-size="10" fill="#E8E4E0" text-anchor="middle" letter-spacing="3">06</text>
+
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 7 — SERVICIOS
+═══════════════════════════════════════════ -->
+<rect x="0" y="4200" width="900" height="700" fill="#FFFFFF"/>
+<rect x="0" y="4200" width="900" height="1" fill="#E8E4E0"/>
+
+<!-- Franja roja -->
+<rect x="64" y="4264" width="2" height="572" fill="#D4232A"/>
+
+<text x="88" y="4264" class="f-dm" font-size="10" fill="#7A7370" letter-spacing="4">SERVICIOS</text>
+<rect x="88" y="4272" width="32" height="1" fill="#D4232A"/>
+<text x="88" y="4314" class="f-fraunces" font-size="48" fill="#111010">Lo que hacemos.</text>
+
+<!-- Lista servicios -->
+<rect x="88" y="4344" width="724" height="1" fill="#E8E4E0"/>
+<text x="88" y="4378" class="f-dm" font-size="11" fill="rgba(17,16,16,0.25)" letter-spacing="2">01</text>
+<text x="144" y="4378" class="f-dm" font-size="28" font-weight="200" fill="#111010">Eventos corporativos</text>
+<text x="88" y="4406" class="f-dm" font-size="13" fill="#7A7370">Fiestas de fin de año, presentaciones, activaciones. Nos adaptamos a la estética de cada empresa.</text>
+
+<rect x="88" y="4432" width="724" height="1" fill="#E8E4E0"/>
+<text x="88" y="4466" class="f-dm" font-size="11" fill="rgba(17,16,16,0.25)" letter-spacing="2">02</text>
+<text x="144" y="4466" class="f-dm" font-size="28" font-weight="200" fill="#111010">Lanzamiento de productos</text>
+<text x="88" y="4494" class="f-dm" font-size="13" fill="#7A7370">Cóctel, mocktail, puesta en escena de la barra y styling. Co-creamos con la marca.</text>
+
+<rect x="88" y="4520" width="724" height="1" fill="#E8E4E0"/>
+<text x="88" y="4554" class="f-dm" font-size="11" fill="rgba(17,16,16,0.25)" letter-spacing="2">03</text>
+<text x="144" y="4554" class="f-dm" font-size="28" font-weight="200" fill="#111010">Celebraciones privadas</text>
+<text x="88" y="4582" class="f-dm" font-size="13" fill="#7A7370">Desde reuniones íntimas hasta casamientos. Servicio impecable o diseño total. Siempre con intención.</text>
+
+<rect x="88" y="4608" width="724" height="1" fill="#E8E4E0"/>
+<text x="88" y="4642" class="f-dm" font-size="11" fill="rgba(17,16,16,0.25)" letter-spacing="2">04</text>
+<text x="144" y="4642" class="f-dm" font-size="28" font-weight="200" fill="#111010">Talleres</text>
+<text x="88" y="4670" class="f-dm" font-size="13" fill="#7A7370">Formación en coctelería, cultura líquida y experiencias de degustación.</text>
+<rect x="88" y="4696" width="724" height="1" fill="#E8E4E0"/>
+
+<!-- Número página -->
+<rect x="0" y="4884" width="900" height="1" fill="#E8E4E0"/>
+<text x="450" y="4872" class="f-dm" font-size="10" fill="#E8E4E0" text-anchor="middle" letter-spacing="3">07</text>
+
+
+<!-- ═══════════════════════════════════════════
+     PÁGINA 8 — CIERRE
+═══════════════════════════════════════════ -->
+<rect x="0" y="4900" width="900" height="700" fill="#FFFFFF"/>
+<rect x="0" y="4900" width="900" height="1" fill="#E8E4E0"/>
+
+<!-- Motivo decorativo — sutil en linea -->
+<circle cx="450" cy="5200" r="220" fill="none" stroke="#E8E4E0" stroke-width="1"/>
+<circle cx="450" cy="5200" r="170" fill="none" stroke="#E8E4E0" stroke-width="1"/>
+<circle cx="450" cy="5200" r="120" fill="none" stroke="#E8E4E0" stroke-width="1"/>
+
+<!-- Tagline central -->
+<text x="450" y="5158" class="f-fraunces" font-size="36" fill="rgba(17,16,16,0.2)" text-anchor="middle">Dirección creativa</text>
+<text x="450" y="5203" class="f-fraunces" font-size="36" fill="rgba(17,16,16,0.2)" text-anchor="middle">aplicada al</text>
+<text x="450" y="5248" class="f-fraunces" font-size="36" fill="#D4232A" text-anchor="middle">líquido.</text>
+
+<!-- Datos contacto -->
+<rect x="88" y="5380" width="724" height="1" fill="#E8E4E0"/>
+<text x="88"  y="5416" class="f-dm" font-size="11" fill="#7A7370">propuestas@classictwist.uy</text>
+<text x="450" y="5416" class="f-dm" font-size="11" fill="#7A7370" text-anchor="middle">@classictwist.uy</text>
+<text x="812" y="5416" class="f-dm" font-size="11" fill="#7A7370" text-anchor="end">Uruguay · 2026</text>
+
+<!-- Logo pequeño abajo -->
+<text x="450" y="5490" class="f-unbounded" font-size="9" fill="rgba(17,16,16,0.3)" letter-spacing="6" text-anchor="middle">CLASSIC</text>
+<circle cx="432" cy="5508" r="4" fill="#FFD600"/>
+<circle cx="432" cy="5520" r="4" fill="#D4232A"/>
+<text x="441" y="5530" class="f-fraunces" font-size="36" fill="rgba(17,16,16,0.4)">Twist</text>
+
+<!-- Número página -->
+<text x="450" y="5576" class="f-dm" font-size="10" fill="#E8E4E0" text-anchor="middle" letter-spacing="3">08</text>
+
+</svg>
