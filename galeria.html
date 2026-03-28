@@ -130,14 +130,41 @@ nav {
   line-height: 1.0;
 }
 
+/* ── Filtros ── */
+.gl-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 48px 40px;
+}
+.gl-filter {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--linea);
+  background: transparent;
+  color: var(--gris-txt);
+  padding: 8px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.gl-filter:hover { border-color: var(--negro); color: var(--negro); }
+.gl-filter.active { background: var(--negro); color: var(--blanco); border-color: var(--negro); }
+
+/* ── Grid ── */
 .gl-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 12px;
+  padding: 0 48px;
 }
 .gl-item {
   overflow: hidden;
   background: var(--linea);
+  cursor: pointer;
 }
 .gl-item img {
   width: 100%; height: 100%;
@@ -147,11 +174,50 @@ nav {
   aspect-ratio: 4/5;
 }
 .gl-item:hover img { transform: scale(1.04); }
-.gl-item.landscape img { aspect-ratio: 16/10; }
-.gl-item.large {
-  grid-column: span 2;
+.gl-item.hidden { display: none; }
+
+/* ── Lightbox ── */
+.lb {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17,16,16,0.96);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
 }
-.gl-item.large img { aspect-ratio: auto; height: 560px; }
+.lb.open { display: flex; }
+.lb-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 2px;
+}
+.lb-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.7;
+}
+.lb-close:hover { opacity: 1; }
+.lb-prev, .lb-next {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+  opacity: 0.5;
+  padding: 16px;
+  line-height: 1;
+}
+.lb-prev:hover, .lb-next:hover { opacity: 1; }
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
 
 /* ══════════════════════════════
    FOOTER
@@ -249,10 +315,9 @@ footer {
   nav { padding: 14px 24px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  #galeria { padding: 100px 24px 64px; }
-  .gl-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .gl-item.large { grid-column: span 2; }
-  .gl-item.large img { height: 300px; }
+  #galeria { padding: 100px 0 64px; }
+  .gl-filters { padding: 0 24px 28px; }
+  .gl-grid { grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 24px; }
   footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; gap: 12px; }
 }
 </style>
@@ -297,46 +362,95 @@ footer {
     <h1 class="gl-page-title">Nuestro trabajo.</h1>
   </div>
 
+  <!-- Filtros -->
+  <div class="gl-filters">
+    <button class="gl-filter active" data-filter="all">Todos</button>
+    <button class="gl-filter" data-filter="casamiento">Casamiento</button>
+    <button class="gl-filter" data-filter="exat">Exat</button>
+    <button class="gl-filter" data-filter="fixed">Fixed</button>
+    <button class="gl-filter" data-filter="hym">HYM</button>
+    <button class="gl-filter" data-filter="ibm">IBM</button>
+    <button class="gl-filter" data-filter="loreal">L'Oréal</button>
+    <button class="gl-filter" data-filter="roche">La Roche-Posay</button>
+    <button class="gl-filter" data-filter="samsung">Samsung</button>
+    <button class="gl-filter" data-filter="vichy">Vichy</button>
+  </div>
+
+  <!-- Grid -->
   <div class="gl-grid">
-    <div class="gl-item large">
-      <img src="assets/img/general/_AG36874.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/general/069CucharaFixed.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/general/168CucharaFixed.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/general/DSC09225.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/general/DSC_7646.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/eventos-corporativos/_DSC7744.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/lanzamiento/DSC_0591.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/lanzamiento/_YM_7427.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/celebraciones/DSC00837.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/celebraciones/DSC00948.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/celebraciones/DSC00960.jpg" alt="Classic Twist">
-    </div>
-    <div class="gl-item">
-      <img src="assets/img/celebraciones/DSC00991.jpg" alt="Classic Twist">
-    </div>
+    <!-- CASAMIENTO -->
+    <div class="gl-item" data-event="casamiento"><img src="galeria/casamiento/01.jpg" alt="Casamiento" loading="lazy"></div>
+    <div class="gl-item" data-event="casamiento"><img src="galeria/casamiento/02.jpg" alt="Casamiento" loading="lazy"></div>
+    <div class="gl-item" data-event="casamiento"><img src="galeria/casamiento/03.jpg" alt="Casamiento" loading="lazy"></div>
+    <div class="gl-item" data-event="casamiento"><img src="galeria/casamiento/04.jpg" alt="Casamiento" loading="lazy"></div>
+    <div class="gl-item" data-event="casamiento"><img src="galeria/casamiento/05.jpg" alt="Casamiento" loading="lazy"></div>
+    <!-- EXAT -->
+    <div class="gl-item" data-event="exat"><img src="galeria/exat/01.jpg" alt="Exat" loading="lazy"></div>
+    <div class="gl-item" data-event="exat"><img src="galeria/exat/02.jpg" alt="Exat" loading="lazy"></div>
+    <div class="gl-item" data-event="exat"><img src="galeria/exat/03.jpg" alt="Exat" loading="lazy"></div>
+    <div class="gl-item" data-event="exat"><img src="galeria/exat/04.jpg" alt="Exat" loading="lazy"></div>
+    <div class="gl-item" data-event="exat"><img src="galeria/exat/05.jpg" alt="Exat" loading="lazy"></div>
+    <!-- FIXED -->
+    <div class="gl-item" data-event="fixed"><img src="galeria/fixed/01.jpg" alt="Fixed" loading="lazy"></div>
+    <div class="gl-item" data-event="fixed"><img src="galeria/fixed/02.jpg" alt="Fixed" loading="lazy"></div>
+    <div class="gl-item" data-event="fixed"><img src="galeria/fixed/03.jpg" alt="Fixed" loading="lazy"></div>
+    <div class="gl-item" data-event="fixed"><img src="galeria/fixed/04.jpg" alt="Fixed" loading="lazy"></div>
+    <div class="gl-item" data-event="fixed"><img src="galeria/fixed/05.jpg" alt="Fixed" loading="lazy"></div>
+    <div class="gl-item" data-event="fixed"><img src="galeria/fixed/06.jpg" alt="Fixed" loading="lazy"></div>
+    <div class="gl-item" data-event="fixed"><img src="galeria/fixed/07.jpg" alt="Fixed" loading="lazy"></div>
+    <!-- HYM -->
+    <div class="gl-item" data-event="hym"><img src="galeria/hym/01.jpg" alt="HYM" loading="lazy"></div>
+    <div class="gl-item" data-event="hym"><img src="galeria/hym/02.jpg" alt="HYM" loading="lazy"></div>
+    <div class="gl-item" data-event="hym"><img src="galeria/hym/03.jpg" alt="HYM" loading="lazy"></div>
+    <div class="gl-item" data-event="hym"><img src="galeria/hym/04.jpg" alt="HYM" loading="lazy"></div>
+    <div class="gl-item" data-event="hym"><img src="galeria/hym/05.jpg" alt="HYM" loading="lazy"></div>
+    <div class="gl-item" data-event="hym"><img src="galeria/hym/06.jpg" alt="HYM" loading="lazy"></div>
+    <!-- IBM -->
+    <div class="gl-item" data-event="ibm"><img src="galeria/ibm/01.jpg" alt="IBM" loading="lazy"></div>
+    <div class="gl-item" data-event="ibm"><img src="galeria/ibm/02.jpg" alt="IBM" loading="lazy"></div>
+    <div class="gl-item" data-event="ibm"><img src="galeria/ibm/03.jpg" alt="IBM" loading="lazy"></div>
+    <div class="gl-item" data-event="ibm"><img src="galeria/ibm/04.jpg" alt="IBM" loading="lazy"></div>
+    <!-- L'ORÉAL -->
+    <div class="gl-item" data-event="loreal"><img src="galeria/loreal/01.jpg" alt="L'Oréal" loading="lazy"></div>
+    <div class="gl-item" data-event="loreal"><img src="galeria/loreal/02.jpg" alt="L'Oréal" loading="lazy"></div>
+    <div class="gl-item" data-event="loreal"><img src="galeria/loreal/03.jpg" alt="L'Oréal" loading="lazy"></div>
+    <div class="gl-item" data-event="loreal"><img src="galeria/loreal/04.jpg" alt="L'Oréal" loading="lazy"></div>
+    <div class="gl-item" data-event="loreal"><img src="galeria/loreal/05.jpg" alt="L'Oréal" loading="lazy"></div>
+    <div class="gl-item" data-event="loreal"><img src="galeria/loreal/06.jpg" alt="L'Oréal" loading="lazy"></div>
+    <!-- ROCHE -->
+    <div class="gl-item" data-event="roche"><img src="galeria/roche/01.jpg" alt="La Roche-Posay" loading="lazy"></div>
+    <div class="gl-item" data-event="roche"><img src="galeria/roche/02.jpg" alt="La Roche-Posay" loading="lazy"></div>
+    <div class="gl-item" data-event="roche"><img src="galeria/roche/03.jpg" alt="La Roche-Posay" loading="lazy"></div>
+    <div class="gl-item" data-event="roche"><img src="galeria/roche/04.jpg" alt="La Roche-Posay" loading="lazy"></div>
+    <div class="gl-item" data-event="roche"><img src="galeria/roche/05.jpg" alt="La Roche-Posay" loading="lazy"></div>
+    <div class="gl-item" data-event="roche"><img src="galeria/roche/06.jpg" alt="La Roche-Posay" loading="lazy"></div>
+    <!-- SAMSUNG -->
+    <div class="gl-item" data-event="samsung"><img src="galeria/samsung/01.jpg" alt="Samsung" loading="lazy"></div>
+    <div class="gl-item" data-event="samsung"><img src="galeria/samsung/02.jpg" alt="Samsung" loading="lazy"></div>
+    <div class="gl-item" data-event="samsung"><img src="galeria/samsung/03.jpg" alt="Samsung" loading="lazy"></div>
+    <div class="gl-item" data-event="samsung"><img src="galeria/samsung/04.jpg" alt="Samsung" loading="lazy"></div>
+    <div class="gl-item" data-event="samsung"><img src="galeria/samsung/05.jpg" alt="Samsung" loading="lazy"></div>
+    <!-- VICHY -->
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/01.jpg" alt="Vichy" loading="lazy"></div>
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/02.jpg" alt="Vichy" loading="lazy"></div>
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/03.jpg" alt="Vichy" loading="lazy"></div>
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/04.jpg" alt="Vichy" loading="lazy"></div>
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/05.jpg" alt="Vichy" loading="lazy"></div>
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/06.jpg" alt="Vichy" loading="lazy"></div>
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/07.jpg" alt="Vichy" loading="lazy"></div>
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/08.jpg" alt="Vichy" loading="lazy"></div>
+    <div class="gl-item" data-event="vichy"><img src="galeria/vichy/09.jpg" alt="Vichy" loading="lazy"></div>
   </div>
 
 </section>
+
+<!-- Lightbox -->
+<div class="lb" id="lb">
+  <span class="lb-close" onclick="lbClose()">×</span>
+  <button class="lb-prev" onclick="lbNav(-1)">‹</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-next" onclick="lbNav(1)">›</button>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -355,6 +469,48 @@ footer {
 </footer>
 
 <script>
+// ── Filtros por evento ──
+const filters = document.querySelectorAll('.gl-filter');
+const items   = document.querySelectorAll('.gl-item');
+
+filters.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filters.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    items.forEach(item => {
+      item.classList.toggle('hidden', f !== 'all' && item.dataset.event !== f);
+    });
+  });
+});
+
+// ── Lightbox ──
+const lb     = document.getElementById('lb');
+const lbImg  = document.getElementById('lb-img');
+let lbList   = [], lbIdx = 0;
+
+items.forEach((item, i) => {
+  item.addEventListener('click', () => {
+    const visible = Array.from(items).filter(el => !el.classList.contains('hidden'));
+    lbList = visible.map(el => el.querySelector('img').src);
+    lbIdx  = visible.indexOf(item);
+    lbImg.src = lbList[lbIdx];
+    lb.classList.add('open');
+  });
+});
+function lbClose() { lb.classList.remove('open'); lbImg.src = ''; }
+function lbNav(dir) {
+  lbIdx = (lbIdx + dir + lbList.length) % lbList.length;
+  lbImg.src = lbList[lbIdx];
+}
+lb.addEventListener('click', e => { if (e.target === lb) lbClose(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape') lbClose();
+  if (e.key === 'ArrowRight') lbNav(1);
+  if (e.key === 'ArrowLeft')  lbNav(-1);
+});
+
 // Óvalo nav — Contacto siempre visible
 document.fonts.ready.then(() => {
   const ns = 'http://www.w3.org/2000/svg';
