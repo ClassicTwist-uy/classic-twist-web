@@ -42,16 +42,10 @@ nav {
 .nav-logo .l-dot-r { background:var(--rojo); }
 .nav-logo .l-t { font-family:'Unbounded',sans-serif; font-weight:200; font-size:15px; letter-spacing:.18em; text-transform:uppercase; color:var(--negro); }
 .nav-links { list-style:none; display:flex; gap:32px; align-items:center; }
-.nav-links li { position: relative; }
-.nav-links a { font-size:11px; font-weight:400; letter-spacing:.10em; text-transform:uppercase; color:var(--negro); text-decoration:none; transition:color .2s; }
+.nav-links a { font-size:12px; font-weight:400; letter-spacing:.04em; color:var(--negro); text-decoration:none; transition:color .2s; }
 .nav-links a:hover, .nav-links a.active { color:var(--rojo); }
-.nav-links li a.nav-cta { background:none; color:var(--negro); padding:9px 20px; }
-.nav-links li a.nav-cta:hover { color:var(--rojo); }
-.nav-links li .nav-oval {
-  position:absolute; top:50%; left:50%;
-  transform:translate(-50%,-50%);
-  pointer-events:none; overflow:visible;
-}
+.nav-cta { border:1px solid var(--negro); border-radius:100px; padding:8px 20px !important; transition:background .2s,color .2s !important; }
+.nav-cta:hover { background:var(--negro) !important; color:var(--blanco) !important; }
 
 /* ══ LAYOUT ══ */
 .gl-page { display:flex; flex-direction:column; height:100vh; padding-top:72px; }
@@ -152,25 +146,16 @@ nav {
 
 @media (max-width: 900px) {
   html, body { overflow: auto; }
-  .gl-page { height: auto; min-height: 100vh; }
+  .gl-page { height: auto; }
   nav { padding: 14px 24px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .gl-top { padding: 0 24px 28px; min-height: 22vh; }
-  .carousel-wrap {
-    -webkit-mask-image: none; mask-image: none;
-    padding-bottom: 48px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* scroll suave iOS */
-    scroll-snap-type: x proximity;
-  }
-  .carousel { padding: 12px 32px 0; gap: 10px; }
-  .ev-item { scroll-snap-align: center; }
-  .ev-card { width: 140px; height: 200px; border-radius: 12px; }
-  .ev-item.is-active .ev-card { height: 200px; box-shadow: none; } /* en móvil sin efecto de altura */
-  .ev-item.is-near .ev-card  { height: 200px; }
-  .ev-item.is-near2 .ev-card { height: 200px; }
-  .ev-item { opacity: 1 !important; } /* todas visibles en móvil */
+  .gl-top { padding: 0 24px 32px; min-height: 28vh; }
+  .carousel-wrap { -webkit-mask-image: none; mask-image: none; padding-bottom: 40px; }
+  .carousel { padding: 16px 24px 0; }
+  .ev-card { width: 150px; height: 210px; }
+  .ev-item.is-active .ev-card { height: 290px; }
+  .ev-item.is-near .ev-card { height: 250px; }
 }
 </style>
 </head>
@@ -215,7 +200,7 @@ const EVENTS = [
   { event:'casamiento', title:'Casamiento',     cat:'Evento privado',          count:5 },
   { event:'exat',       title:'Exat',           cat:'Evento corporativo',      count:5 },
   { event:'fixed',      title:'Fixed',          cat:'Evento privado',          count:7 },
-  { event:'hym',        title:'HYM',            cat:'Lanzamiento de producto', count:6 },
+  { event:'hym',        title:'HYM',            cat:'Evento corporativo',      count:6 },
   { event:'ibm',        title:'IBM',            cat:'Evento corporativo',      count:4 },
   { event:'loreal',     title:"L'Oréal",        cat:'Lanzamiento de producto', count:6 },
   { event:'roche',      title:'La Roche-Posay', cat:'Lanzamiento de producto', count:6 },
@@ -338,33 +323,25 @@ function checkLoop() {
 }
 wrap.addEventListener('scroll', checkLoop, { passive: true });
 
-// ── Hover con debounce — solo activa si el mouse se queda 200ms ──
-let hoverTimer = null;
-
+// ── Hover ──
 allItems.forEach((item, i) => {
   item.addEventListener('mouseenter', () => {
-    clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => {
-      const realIdx = parseInt(item.dataset.real);
-      const candidates = [realIdx, realIdx + N, realIdx + 2*N];
-      const best = candidates.reduce((a, b) =>
-        Math.abs(a - activeGlobalIdx) <= Math.abs(b - activeGlobalIdx) ? a : b
-      );
-      activeGlobalIdx = best;
-      updateClasses(best);
-      centerItem(best);
-    }, 200);
-  });
-
-  item.addEventListener('mouseleave', () => {
-    clearTimeout(hoverTimer);
+    // Elegir el globalIdx más cercano al actual (para que el scroll sea corto)
+    const realIdx = parseInt(item.dataset.real);
+    const candidates = [realIdx, realIdx + N, realIdx + 2*N];
+    const best = candidates.reduce((a, b) =>
+      Math.abs(a - activeGlobalIdx) <= Math.abs(b - activeGlobalIdx) ? a : b
+    );
+    activeGlobalIdx = best;
+    updateClasses(best);
+    centerItem(best);
   });
 
   // Click → ir a la página del evento
   let mouseDownX = 0;
   item.addEventListener('mousedown', e => mouseDownX = e.clientX);
   item.addEventListener('mouseup', e => {
-    if (Math.abs(e.clientX - mouseDownX) < 6) {
+    if (Math.abs(e.clientX - mouseDownX) < 6) { // no fue drag
       const ev = EVENTS[parseInt(item.dataset.real)];
       window.location.href = `evento.html?e=${ev.event}&n=${encodeURIComponent(ev.title)}&cat=${encodeURIComponent(ev.cat)}&c=${ev.count}`;
     }
@@ -398,58 +375,6 @@ function toggleMenu() {
   document.getElementById('ham').classList.toggle('open');
   document.getElementById('mobile-menu').classList.toggle('open');
 }
-
-// ── Elipse SVG en nav (igual que index.html) ──
-document.fonts.ready.then(() => {
-  const ns = 'http://www.w3.org/2000/svg';
-  const allLis = Array.from(document.querySelectorAll('.nav-links li'));
-  let ctaEl = null, ctaLen = 0;
-
-  allLis.forEach(li => {
-    const link  = li.querySelector('a');
-    const isCta = link.classList.contains('nav-cta');
-    const px = isCta ? 18 : 16, py = isCta ? 10 : 9;
-    const lw = link.offsetWidth, lh = link.offsetHeight;
-    const W = lw + px*2, H = lh + py*2;
-    const cx = W/2, cy = H/2, rx = W/2-2, ry = H/2-1;
-
-    const svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('width', W); svg.setAttribute('height', H);
-    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    svg.classList.add('nav-oval');
-
-    const ell = document.createElementNS(ns, 'ellipse');
-    ell.setAttribute('cx', cx); ell.setAttribute('cy', cy);
-    ell.setAttribute('rx', rx); ell.setAttribute('ry', ry);
-    ell.setAttribute('fill', 'none');
-    ell.setAttribute('stroke', '#D4232A');
-    ell.setAttribute('stroke-width', '1.5');
-    ell.setAttribute('stroke-linecap', 'round');
-    svg.appendChild(ell);
-    li.appendChild(svg);
-
-    const a = rx, b = ry;
-    const len = Math.PI * (3*(a+b) - Math.sqrt((3*a+b)*(a+3*b)));
-    ell.style.strokeDasharray = len;
-
-    if (isCta) {
-      ell.style.strokeDashoffset = 0;
-      ell.style.transition = 'stroke-dashoffset 0.35s ease, opacity 0.3s ease';
-      ctaEl = ell; ctaLen = len;
-    } else {
-      ell.style.strokeDashoffset = len;
-      ell.style.transition = 'stroke-dashoffset 0.45s cubic-bezier(0.4,0,0.2,1)';
-      li.addEventListener('mouseenter', () => {
-        ell.style.strokeDashoffset = 0;
-        if (ctaEl) ctaEl.style.strokeDashoffset = ctaLen;
-      });
-      li.addEventListener('mouseleave', () => {
-        ell.style.strokeDashoffset = len;
-        if (ctaEl) ctaEl.style.strokeDashoffset = 0;
-      });
-    }
-  });
-});
 </script>
 </body>
 </html>
