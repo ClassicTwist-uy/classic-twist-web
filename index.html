@@ -1007,6 +1007,18 @@ nav.solid .hamburger span { background: var(--negro); }
   transition: opacity 0.2s, filter 0.2s;
 }
 .cl-logos img:hover { opacity: 1; filter: grayscale(0); }
+.cl-svg {
+  height: 36px;
+  width: auto;
+  color: #7A7370;
+  opacity: 0.7;
+  flex-shrink: 0;
+  transition: color 0.2s, opacity 0.2s;
+}
+.cl-svg:hover {
+  color: #111010;
+  opacity: 1;
+}
 /* Placeholder temporal hasta tener los logos reales */
 .cl-logo-placeholder {
   font-family: 'DM Sans', sans-serif;
@@ -1291,14 +1303,14 @@ footer {
     <!-- VIDEO 1 — izquierda -->
     <div class="hv-item">
       <video id="vid-hym" autoplay muted playsinline loop>
-        <source src="../04. FOTOS- VIDEOS POR EVENTO/VIDEOS/HYM/VIDEOS PARA WEB/WhatsApp Video 2026-03-26 at 6.08.44 PM.mp4" type="video/mp4">
+        <source src="videos/hym-v1.mp4" type="video/mp4">
       </video>
     </div>
 
     <!-- VIDEO 2 — derecha -->
     <div class="hv-item">
       <video id="vid-only" autoplay muted playsinline loop>
-        <source src="../04. FOTOS- VIDEOS POR EVENTO/VIDEOS/HYM/VIDEOS PARA WEB/WhatsApp Video 2026-03-26 at 6.29.12 PM.mp4" type="video/mp4">
+        <source src="videos/hym-v2.mp4" type="video/mp4">
       </video>
     </div>
 
@@ -1578,13 +1590,7 @@ footer {
   <div class="cl-container">
     <div class="cl-label reveal">Confían en nosotros</div>
     <div class="cl-logos reveal reveal-d1">
-      <!-- Los logos se agregan acá como <img> cuando estén disponibles -->
-      <div class="cl-logo-placeholder">Logo 1</div>
-      <div class="cl-logo-placeholder">Logo 2</div>
-      <div class="cl-logo-placeholder">Logo 3</div>
-      <div class="cl-logo-placeholder">Logo 4</div>
-      <div class="cl-logo-placeholder">Logo 5</div>
-      <div class="cl-logo-placeholder">Logo 6</div>
+      <!-- logos pendientes -->
     </div>
   </div>
 </section>
