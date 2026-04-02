@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200&amp;family=Fraunces:ital,opsz,wght@1,9..144,300&amp;display=swap');
+      .t-classic { font-family: 'Unbounded', sans-serif; font-weight: 200; font-size: 26px; letter-spacing: 10px; fill: rgba(17,16,16,0.45); }
+      .t-twist   { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 168px; fill: #111010; }
+    </style>
+  </defs>
+
+  <rect width="1000" height="1000" fill="#FFFFFF"/>
+
+  <text class="t-classic" x="303" y="432">CLASSIC</text>
+
+  <circle cx="279" cy="460" r="11" fill="#FFD600"/>
+  <circle cx="279" cy="494" r="11" fill="#D4232A"/>
+
+  <text class="t-twist" x="303" y="555">Twist</text>
+
+</svg>
